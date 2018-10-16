@@ -1,0 +1,92 @@
+[client]
+port            = 3306
+socket          = /tmp/mysql.sock
+user=root
+password=root123
+[mysqld]
+port            = 3306
+socket          = /tmp/mysql.sock
+datadir=/data001/mysql/data
+skip-name-resolve
+character-set-server=utf8
+lower_case_table_names=1
+expire-logs-days=7
+back_log = 500
+max_connections = 1000
+max_connect_errors =100000
+table_open_cache = 2048
+max_allowed_packet = 16M
+binlog_cache_size = 1M
+max_heap_table_size = 64M
+sort_buffer_size = 8M
+join_buffer_size = 8M
+ft_min_word_len = 4
+thread_stack = 256K
+tmp_table_size = 32M
+log-bin=/data001/mysql/log/binlog
+binlog_format=row
+#binlog-do-db = cxj
+#binlog-do-db = cxjmdm
+#binlog-do-db = cxjcore
+#binlog-do-db = mdmpartner
+#binlog-do-db = mdmcarlib
+#binlog-do-db = mdmuser
+log_output=table,file
+log_warnings=1
+log_slave_updates
+relay-log=/data001/mysql/log/relaybin
+server-id = 609
+skip_slave_start
+relay_log_info_repository = TABLE
+master_info_repository = TABLE
+relay_log_recovery = on
+#replicate-wild-do-table=cxj.%
+#replicate-wild-do-table=cxjcore.%
+#replicate-wild-do-table=cxjmdm.%
+##replicate-wild-do-table=mdmuser.%
+#replicate-wild-do-table=mdmcarlib.%
+#replicate-wild-do-table=mdmpartner.%
+#replicate-wild-ignore-table=mysql.%
+#replicate-wild-ignore-table=test.%
+#replicate-wild-ignore-table=ucm.%
+#replicate-wild-ignore-table=exception.%
+#replicate-wild-ignore-table=am.%
+#replicate-wild-ignore-table=am2.%
+#replicate-wild-ignore-table=uts.%
+#replicate-wild-ignore-table=monitor.%
+key_buffer_size = 64M
+transaction_isolation = READ-COMMITTED
+innodb_buffer_pool_size = 72G
+innodb_data_file_path = ibdata1:1000M:autoextend
+innodb_file_per_table=1
+innodb_thread_concurrency = 16
+innodb_flush_log_at_trx_commit = 2
+innodb_log_buffer_size = 8M
+innodb_log_file_size = 512M
+innodb_log_files_in_group = 4
+innodb_max_dirty_pages_pct = 90
+innodb_lock_wait_timeout = 120
+innodb_flush_method = O_DIRECT_NO_FSYNC
+table_open_cache_instances=8
+metadata_locks_hash_instances=8
+metadata_locks_cache_size=2048
+innodb_file_format = barracuda
+innodb_lru_scan_depth=128
+sql_mode="NO_ENGINE_SUBSTITUTION"
+innodb_strict_mode=off
+[mysqldump]
+quick
+max_allowed_packet = 16M
+[mysql]
+no-auto-rehash
+[myisamchk]
+key_buffer_size = 512M
+sort_buffer_size = 512M
+read_buffer = 8M
+write_buffer = 8M
+[mysqlhotcopy]
+interactive-timeout
+[mysqld_safe]
+open-files-limit = 65535
+log-error=/data001/mysql/log/error.log
+pid-file=/data001/mysql/data/mysql.pid
