@@ -1,0 +1,5 @@
+#! /bin/bash
+git add .
+git status
+git commit -m "$(date +%F_%H:%M:%S) commit"
+git push -u origin master
